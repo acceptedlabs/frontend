@@ -60,6 +60,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# next cache
+.next
+
 # random doodads
 .DS_STORE
 *.sublime-project
