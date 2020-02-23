@@ -1,0 +1,24 @@
+{
+  "name": "accepted-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://applecrazy@github.com/acceptedlabs/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acceptedlabs/frontend/issues"
+  },
+  "homepage": "https://github.com/acceptedlabs/frontend#readme",
+  "dependencies": {
+    "next": "^9.2.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
