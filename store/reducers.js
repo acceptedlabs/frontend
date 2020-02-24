@@ -21,24 +21,24 @@ function createReducer(initialState, handlers) {
 	}
 }
 
-function initializeAuth(initialState, action) {
+function initializeAuth(authState, action) {
 	return {
-		...initialState,
+		...authState,
 		loading: true,
 	}
 }
 
-function authInitialized(initialState, action) { 
+function authInitialized(authState, action) { 
 	return {
-		...initialState,
+		...authState,
 		loading: false,
 		client: action.client
 	}
 }
 
-function authInitializationError(initialState, action) {
+function authInitializationError(authState, action) {
 	return {
-		...initialState,
+		...authState,
 		loading: false,
 		error: action.error,
 	}

@@ -36,3 +36,13 @@ export function authInitializationError(error) {
 		error,
 	}
 }
+
+/**
+ * Action creator to begin login flow.
+ * @returns {object} The created action.
+ */
+export function login() {
+	return {
+		type: 'LOGIN',
+	}
+}
