@@ -1,4 +1,4 @@
 # Accepted
 
 ## License Information
-See [LINCENSE.md](LICENSE.md)
+See [LICENSE.md](LICENSE.md).
