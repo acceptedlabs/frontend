@@ -28,8 +28,26 @@ function initializeAuth(initialState, action) {
 	}
 }
 
+function authInitialized(initialState, action) { 
+	return {
+		...initialState,
+		loading: false,
+		client: action.client
+	}
+}
+
+function authInitializationError(initialState, action) {
+	return {
+		...initialState,
+		loading: false,
+		error: action.error,
+	}
+}
+
 const authReducer = createReducer(initialState.auth, {
 	'INITIALIZE_AUTH': initializeAuth,
+	'AUTH_INITIALIZED': authInitialized,
+	'AUTH_INITIALIZATION_ERROR': authInitializationError,
 })
 
 const acceptedApp = combineReducers({

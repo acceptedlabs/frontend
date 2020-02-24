@@ -1,5 +1,8 @@
 import { all, call, put, select, take, takeEvery } from 'redux-saga/effects'
+import * as actions from './actions'
+
 import createAuth0Client from '@auth0/auth0-spa-js'
+
 
 const clientSettings = {
 	domain: process.env.AUTH_DOMAIN,
@@ -10,9 +13,9 @@ const clientSettings = {
 export function* initializeAuth(action) {
 	try {
 		const auth0 = yield call(createAuth0Client, clientSettings)
-		console.log(auth0)
+		yield put(actions.authInitialized(auth0))
 	} catch (err) {
-		console.log(err)
+		yield put(actions.authInitializationError(err))
 	}
 }
 
