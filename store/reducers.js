@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-unused-vars */
 import { combineReducers } from 'redux'
 
 const initialState = {
@@ -8,7 +10,7 @@ const initialState = {
 		token: null,
 		user: null,
 		client: null,
-	}
+	},
 }
 
 function createReducer(initialState, handlers) {
@@ -32,7 +34,7 @@ function authInitialized(authState, action) {
 	return {
 		...authState,
 		loading: false,
-		client: action.client
+		client: action.client,
 	}
 }
 

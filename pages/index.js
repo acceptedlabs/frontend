@@ -16,7 +16,7 @@ const Index = () => (
 					</h1>
 					<p className="cta-description">Accepted pairs you up with real college students who can guide you through the entire process&mdash;from application to acceptance.</p>
 					<div className="signup-cta">
-						<Link href="/auth"><button className="button is-rounded is-black is-aubergine">Get started - it's free</button></Link>
+						<Link href="/auth"><button className="button is-rounded is-black is-aubergine">Get started &mdash; it&apos;s free</button></Link>
 					</div>
 				</section>
 			</div>

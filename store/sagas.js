@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { all, call, put, select, take, takeEvery } from 'redux-saga/effects'
 import * as actions from './actions'
 
