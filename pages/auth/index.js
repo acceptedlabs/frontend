@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../../../store/actions'
+import { login } from '../../store/actions'
 
 class Login extends Component {
 	componentDidMount() {
