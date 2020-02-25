@@ -54,7 +54,7 @@ function Onboarding() {
             
             case 2:
                 return (
-                    <Intended />
+                    <Intended nextStep={nextStep} handleChange={handleChange}/>
                 )
 
             case 3: 

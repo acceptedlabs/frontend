@@ -14,7 +14,7 @@ function Name({nextStep, handleChange}) {
                 <br/>
                 <form>
                     <input placeholder="What is your first name" onChange={handleChange("firstName")}/>
-                    <input placeholder="What is your last name"/>
+                    <input placeholder="What is your last name" onChange={handleChange("lastName")}/>
                     <button
                         onClick = {onClick}
                     >Next</button>
