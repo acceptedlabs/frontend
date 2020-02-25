@@ -27,11 +27,15 @@ export function* watchInitializeAuth() {
 
 export function* login(action) {
 	try {
-		const client = yield select(clientSelector)
-		yield client.loginWithRedirect()
+		var client = yield select(clientSelector)
+		if (!client) {
+			yield call(initializeAuth)
+			client = yield select(clientSelector)
+		}
+		yield call(() => client.loginWithRedirect())
 	} catch (err) {
+		console.log(err)
 		console.log('oops')
-		// yield put(actions.authInitializationError(err))
 	}
 }
 
@@ -39,11 +43,33 @@ export function* watchLogin() {
 	yield takeEvery('LOGIN', login)
 }
 
+export function* processToken(action) {
+	try {
+		var client = yield select(clientSelector)
+		if (!client) {
+			yield call(initializeAuth)
+			client = yield select(clientSelector)
+		}
+		yield call(url => client.handleRedirectCallback(url), `${clientSettings.redirect_uri}${action.suffix}`)
+		yield put(actions.authFlowCompleted())
+	} catch (err) {
+		if (err.message.includes('Invalid state') || err.message.includes('no query')) {
+			yield call(login)
+		}
+	}
+}
+
+export function* watchProcessToken() {
+	yield takeEvery('PROCESS_TOKEN', processToken)
+}
+
+
 // root saga which will run in a separate thread
 export default function* rootSaga() {
 	// this function will execute these things concurrently
 	yield all([
 		watchInitializeAuth(),
 		watchLogin(),
+		watchProcessToken(),
 	])
 }

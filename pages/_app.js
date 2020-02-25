@@ -11,7 +11,7 @@ import 'source-serif-pro/source-serif-pro.css'
 import '../styles/bulma.min.css'
 import '../styles/index.css'
 
-class AcceptedApp extends App { 
+class AcceptedApp extends App {
 	componentDidMount() {
 		// initialize auth on app load
 		this.props.store.dispatch(actions.initializeAuth())

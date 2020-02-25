@@ -46,3 +46,25 @@ export function login() {
 		type: 'LOGIN',
 	}
 }
+
+/**
+ * Action creator to extract completed token from URL suffix.
+ * @param suffix The suffix of the URL (i.e. /?id=3494334983498...)
+ * @returns {object} The created action.
+ */
+export function processToken(suffix) {
+	return {
+		type: 'PROCESS_TOKEN',
+		suffix,
+	}
+}
+
+/**
+ * Action creator to denote a completed auth flow.
+ * @returns {object} The created action.
+ */
+export function authFlowCompleted() {
+	return {
+		type: 'AUTH_FLOW_COMPLETED',
+	}
+}

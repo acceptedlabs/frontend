@@ -33,8 +33,8 @@ function initializeAuth(authState, action) {
 function authInitialized(authState, action) { 
 	return {
 		...authState,
-		loading: false,
 		client: action.client,
+		loading: false,
 	}
 }
 
@@ -46,10 +46,19 @@ function authInitializationError(authState, action) {
 	}
 }
 
+function authFlowCompleted(authState, action) {
+	return {
+		...authState,
+		loading: false,
+		isAuth: true,
+	}
+}
+
 const authReducer = createReducer(initialState.auth, {
 	'INITIALIZE_AUTH': initializeAuth,
 	'AUTH_INITIALIZED': authInitialized,
 	'AUTH_INITIALIZATION_ERROR': authInitializationError,
+	'AUTH_FLOW_COMPLETED': authFlowCompleted,
 })
 
 const acceptedApp = combineReducers({

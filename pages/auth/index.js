@@ -4,13 +4,23 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { login } from '../../store/actions'
 
+import Layout from '../../components/layout'
+
 class Login extends Component {
 	componentDidMount() {
 		this.props.login()
 	}
 	render() {
 		return (
-			<div></div>
+			<Layout title="Loading...">
+				<div className="hero is-fullheight">
+					<div className="hero-body">
+						<div className="container has-text-centered">
+							<button className="button is-large is-warning is-loading" style={{ background: 'none' }}>Loading</button>
+						</div>
+					</div>
+				</div>
+			</Layout>
 		)
 	}
 }
