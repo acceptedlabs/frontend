@@ -26,6 +26,13 @@ function Onboarding() {
         })
     }
 
+    const handleArrayChange = data => {
+        setState({
+            ...state,
+            extraAct: data
+        })
+    }
+
     const nextStep = (e) =>{
         e.preventDefault()
         let {step} = state
@@ -62,7 +69,12 @@ function Onboarding() {
 
             case 3: 
                 return (
-                    <Activity prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
+                    <Activity 
+                        prevStep={prevStep} 
+                        nextStep={nextStep} 
+                        handleArrayChange = {handleArrayChange}
+                        activities={state.extraAct}
+                    />
                 )
 
             case 4:

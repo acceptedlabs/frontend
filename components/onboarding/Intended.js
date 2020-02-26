@@ -12,10 +12,12 @@ function Intended({prevStep, nextStep, handleChange}) {
                 <form>
                     <Input 
                         placeholder="What is your graduation year"
+                        type="number"
                         onChange={handleChange("gradyear")}
                     />
                     <Input 
                         placeholder="What is your intended major"
+                        type="text"
                         onChange={handleChange("intendedMajor")}
                     />
                     <div className="step-button-group">

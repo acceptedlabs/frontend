@@ -14,7 +14,7 @@ function Button({nextStep, prevStep,buttonName}) {
                     .step-button {
                         display: block;
                         padding: 8px 16px;
-                        border-radius: 5px;
+                        border-radius: 1.5rem;
                         border: 1px solid black;
                         font-size: 15px;
                         cursor: pointer;

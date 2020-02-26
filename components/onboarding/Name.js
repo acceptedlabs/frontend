@@ -13,10 +13,12 @@ function Name({nextStep, handleChange}) {
                     <Input 
                         placeholder="What is your first name" 
                         onChange={handleChange("firstName")}
+                        type="text"
                     />
                     <Input 
                         placeholder="What is your last name" 
                         onChange={handleChange("lastName")}
+                        type="text"
                     />
                     <div className="step-button-group">
                         <Button nextStep={nextStep} buttonName="nextStep" />
