@@ -1,11 +1,7 @@
 import Layout from "../layout"
+import Button from "./Button"
 
 function Name({nextStep, handleChange}) {
-
-    function onClick(e) {
-        e.preventDefault()
-        nextStep()
-    }
 
     return(
         <Layout>
@@ -15,9 +11,10 @@ function Name({nextStep, handleChange}) {
                 <form>
                     <input placeholder="What is your first name" onChange={handleChange("firstName")}/>
                     <input placeholder="What is your last name" onChange={handleChange("lastName")}/>
-                    <button
-                        onClick = {onClick}
-                    >Next</button>
+                    <div className="step-button-group">
+                        <Button nextStep={nextStep} buttonName="nextStep" />
+                    </div>
+                    
                 </form>
             </div>
 
@@ -54,20 +51,9 @@ function Name({nextStep, handleChange}) {
                         font-size: 18px;
                     }
 
-                    form button {
-                        display: block;
-                        position: absolute;
-                        right: 0;
-                        padding: 8px 16px;
-                        border-radius: 5px;
-                        border: 1px solid black;
-                        font-size: 15px;
-                        cursor: pointer;
-                        transition: 0.2s ease;
-                    }
-
-                    form button:hover {
-                        transform: scale(1.1, 1.1)
+                    form .step-button-group {
+                        display: flex;
+                        justify-content: flex-end;
                     }
                 `}
             </style>

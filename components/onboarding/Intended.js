@@ -1,10 +1,7 @@
 import Layout from "../layout";
+import Button from "./Button";
 
-function Intended({nextStep, handleChange}) {
-    function onClick(e) {
-        e.preventDefault()
-        nextStep()
-    }
+function Intended({prevStep, nextStep, handleChange}) {
 
     return (
         <Layout>
@@ -14,9 +11,11 @@ function Intended({nextStep, handleChange}) {
                 <form>
                     <input placeholder="What is your graduation year" onChange={handleChange("gradyear")}/>
                     <input placeholder="What is your intended major" onChange={handleChange("intendedMajor")}/>
-                    <button
-                        onClick = {onClick}
-                    >Next</button>
+                    <div className="step-button-group">
+                        <Button prevStep={prevStep} buttonName="prevStep" />
+                        <Button nextStep={nextStep} buttonName="nextStep" />
+                    </div>
+                    
                 </form>
             </div>
 
@@ -39,10 +38,6 @@ function Intended({nextStep, handleChange}) {
                         line-height: 5.5rem;
                     }
 
-                    form {
-                        position: relative;
-                    }
-
                     form input {
                         display: block;
                         padding: 15px 15px;
@@ -53,20 +48,9 @@ function Intended({nextStep, handleChange}) {
                         font-size: 18px;
                     }
 
-                    form button {
-                        display: block;
-                        position: absolute;
-                        right: 0;
-                        padding: 8px 16px;
-                        border-radius: 5px;
-                        border: 1px solid black;
-                        font-size: 15px;
-                        cursor: pointer;
-                        transition: 0.2s ease;
-                    }
-
-                    form button:hover {
-                        transform: scale(1.1, 1.1)
+                    form .step-button-group {
+                        display: flex;
+                        justify-content: flex-end;
                     }
                 `}
             </style>

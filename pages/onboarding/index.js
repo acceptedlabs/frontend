@@ -3,6 +3,7 @@ import {useState} from "react"
 import Name from "../../components/onboarding/Name"
 import Intended from "../../components/onboarding/Intended"
 import Achievement from "../../components/onboarding/Achievement"
+import Activity from "../../components/onboarding/Activity"
 
 
 function Onboarding() {
@@ -25,7 +26,8 @@ function Onboarding() {
         })
     }
 
-    const nextStep = () =>{
+    const nextStep = (e) =>{
+        e.preventDefault()
         let {step} = state
         step +=1
 
@@ -35,17 +37,18 @@ function Onboarding() {
         })
     }
 
-    const prevStep = () => {
+    const prevStep = (e) => {
+        e.preventDefault()
         let {step} = state
-        step +=1
+        step -=1
 
         setState({
             ...state,
-            step: step-1
+            step: step
         })
     }
 
-    function display() {
+    const display = () => {
         switch(state.step) {
             case 1:
                 return (
@@ -54,17 +57,17 @@ function Onboarding() {
             
             case 2:
                 return (
-                    <Intended nextStep={nextStep} handleChange={handleChange}/>
+                    <Intended prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
                 )
 
             case 3: 
                 return (
-                    <Intended />
+                    <Activity prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
                 )
 
             case 4:
                 return (
-                    <Achievement />
+                    <Achievement prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
                 )
         }
     }
