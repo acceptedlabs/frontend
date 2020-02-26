@@ -1,5 +1,6 @@
 import Layout from "../layout"
 import Button from "./Button"
+import Input from "./Input"
 
 function Name({nextStep, handleChange}) {
 
@@ -9,8 +10,14 @@ function Name({nextStep, handleChange}) {
                 <h1>First things first <br/> Your name ?</h1>
                 <br/>
                 <form>
-                    <input placeholder="What is your first name" onChange={handleChange("firstName")}/>
-                    <input placeholder="What is your last name" onChange={handleChange("lastName")}/>
+                    <Input 
+                        placeholder="What is your first name" 
+                        onChange={handleChange("firstName")}
+                    />
+                    <Input 
+                        placeholder="What is your last name" 
+                        onChange={handleChange("lastName")}
+                    />
                     <div className="step-button-group">
                         <Button nextStep={nextStep} buttonName="nextStep" />
                     </div>
@@ -35,20 +42,6 @@ function Name({nextStep, handleChange}) {
                         font-size: 3.5rem;
                         text-align: center;
                         line-height: 5.5rem;
-                    }
-
-                    form {
-                        position: relative;
-                    }
-
-                    form input {
-                        display: block;
-                        padding: 15px 15px;
-                        outline: none;
-                        border: none;
-                        border-radius: 2rem;
-                        margin: 1rem 0rem;
-                        font-size: 18px;
                     }
 
                     form .step-button-group {

@@ -1,5 +1,6 @@
 import Layout from "../layout";
 import Button from "./Button";
+import Input from "./Input";
 
 function Intended({prevStep, nextStep, handleChange}) {
 
@@ -9,8 +10,14 @@ function Intended({prevStep, nextStep, handleChange}) {
                 <h1>Niceee, now second ...</h1>
                 <br/>
                 <form>
-                    <input placeholder="What is your graduation year" onChange={handleChange("gradyear")}/>
-                    <input placeholder="What is your intended major" onChange={handleChange("intendedMajor")}/>
+                    <Input 
+                        placeholder="What is your graduation year"
+                        onChange={handleChange("gradyear")}
+                    />
+                    <Input 
+                        placeholder="What is your intended major"
+                        onChange={handleChange("intendedMajor")}
+                    />
                     <div className="step-button-group">
                         <Button prevStep={prevStep} buttonName="prevStep" />
                         <Button nextStep={nextStep} buttonName="nextStep" />
@@ -36,16 +43,6 @@ function Intended({prevStep, nextStep, handleChange}) {
                         font-size: 3.5rem;
                         text-align: center;
                         line-height: 5.5rem;
-                    }
-
-                    form input {
-                        display: block;
-                        padding: 15px 15px;
-                        outline: none;
-                        border: none;
-                        border-radius: 2rem;
-                        margin: 1rem 0rem;
-                        font-size: 18px;
                     }
 
                     form .step-button-group {
