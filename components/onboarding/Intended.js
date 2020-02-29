@@ -2,7 +2,7 @@ import Layout from "../layout";
 import Button from "./Button";
 import Input from "./Input";
 
-function Intended({prevStep, nextStep, handleChange}) {
+function Intended({state, prevStep, nextStep, handleChange}) {
 
     return (
         <Layout>
@@ -14,16 +14,18 @@ function Intended({prevStep, nextStep, handleChange}) {
                         placeholder="What is your graduation year"
                         type="number"
                         onChange={handleChange("gradyear")}
+                        value = {state.gradYear}
                     />
                     <Input 
                         placeholder="What is your intended major"
                         type="text"
                         onChange={handleChange("intendedMajor")}
+                        value = {state.intendedMajor}
                     />
-                    <div className="step-button-group">
+                    {(state.gradYear!=0 && state.intendedMajor) ? <div className="step-button-group">
                         <Button prevStep={prevStep} buttonName="prevStep" />
                         <Button nextStep={nextStep} buttonName="nextStep" />
-                    </div>
+                    </div> : null}
                     
                 </form>
             </div>

@@ -2,7 +2,7 @@ import Layout from "../layout"
 import Button from "./Button"
 import Input from "./Input"
 
-function Name({nextStep, handleChange}) {
+function Name({state,nextStep, handleChange}) {
 
     return(
         <Layout>
@@ -13,16 +13,18 @@ function Name({nextStep, handleChange}) {
                     <Input 
                         placeholder="What is your first name" 
                         onChange={handleChange("firstName")}
+                        value = {state.firstName}
                         type="text"
                     />
                     <Input 
                         placeholder="What is your last name" 
                         onChange={handleChange("lastName")}
+                        value = {state.lastName}
                         type="text"
                     />
-                    <div className="step-button-group">
+                    {(state.firstName && state.lastName) ? <div className="step-button-group">
                         <Button nextStep={nextStep} buttonName="nextStep" />
-                    </div>
+                    </div> : null}
                     
                 </form>
             </div>

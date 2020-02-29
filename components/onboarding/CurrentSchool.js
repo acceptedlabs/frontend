@@ -1,25 +1,25 @@
-import {useState} from "react"
 import Layout from "../layout"
 import Button from "./Button"
 import Input from "./Input"
-import InputArrayButtonAch from "./InputArrayButtonAch"
 
-function Achievement({state, prevStep, nextStep, handleArrayChange, achievement}) {
+function CurrentSchool({state,nextStep, handleChange}) {
 
-    return (
+    return(
         <Layout>
             <div className="form-container">
-                <h1>Your achievements...</h1>
+                <h1>Your current high school ?</h1>
                 <br/>
                 <form>
-                    <div className="add-able-field">
-                        {achievement.map(item => <Input placeholder={item} styles={{marginTop: "0",marginBottom:"8px"}}/>)}
-                        <InputArrayButtonAch achievement={achievement} handleArrayChange={handleArrayChange}/>
-                    </div>
-                    {(state.extraAct.length >=1)?<div className="step-button-group">
-                        <Button prevStep={prevStep} buttonName="prevStep" />
+                    <Input 
+                        placeholder="Your high school..." 
+                        onChange={handleChange("currentHighSchool")}
+                        value = {state.currentHighSchool}
+                        type="text"
+                    />
+                    {(state.currentHighSchool) ? <div className="step-button-group">
                         <Button nextStep={nextStep} buttonName="nextStep" />
-                    </div>: null}
+                    </div> : null}
+                    
                 </form>
             </div>
 
@@ -46,15 +46,11 @@ function Achievement({state, prevStep, nextStep, handleArrayChange, achievement}
                         display: flex;
                         justify-content: flex-end;
                     }
-
-                    form .add-able-field {
-                        display: flex;
-                        flex-direction: column;
-                    }
                 `}
             </style>
         </Layout>
     )
-}
+    
+}   
 
-export default Achievement
+export default CurrentSchool

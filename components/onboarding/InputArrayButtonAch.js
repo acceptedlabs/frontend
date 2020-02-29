@@ -2,10 +2,10 @@ import Layout from "../layout"
 import {useState} from "react"
 import Input from "./Input"
 
-function InputArrayButton ({activities,handleArrayChange}) {
+function InputArrayButtonAch ({achievement,handleArrayChange}) {
     const [state, setState] = useState({
         inputOpen: false,
-        activity: "",
+        achieve: "",
     }) 
 
     const openForm = () => {
@@ -25,7 +25,7 @@ function InputArrayButton ({activities,handleArrayChange}) {
     const inputHandler = (e) => {
         setState({
             ...state,
-            activity: e.target.value
+            achieve: e.target.value
         })
     }
 
@@ -33,10 +33,10 @@ function InputArrayButton ({activities,handleArrayChange}) {
         return (
             <div>
                 <Input 
-                    placeholder="Your activity..."
+                    placeholder="Your achievement..."
                     type="text"
                     onChange={inputHandler}
-                    value = {state.activity}
+                    value = {state.achieve}
                     onBlur = {closeForm}
                 />
                 <button 
@@ -52,10 +52,10 @@ function InputArrayButton ({activities,handleArrayChange}) {
                         outline: "none",
                      }}
                     onMouseDown={()=> {
-                    handleArrayChange([...activities, state.activity])
+                    handleArrayChange([...achievement, state.achieve])
                     setState({
                         ...state,
-                        activity: ""
+                        achieve: ""
                     })
                     }}
                 >Add</button>
@@ -89,4 +89,4 @@ function InputArrayButton ({activities,handleArrayChange}) {
     )
 }
 
-export default InputArrayButton
+export default InputArrayButtonAch

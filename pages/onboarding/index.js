@@ -4,6 +4,7 @@ import Name from "../../components/onboarding/Name"
 import Intended from "../../components/onboarding/Intended"
 import Achievement from "../../components/onboarding/Achievement"
 import Activity from "../../components/onboarding/Activity"
+import CurrentSchool from "../../components/onboarding/CurrentSchool"
 
 
 function Onboarding() {
@@ -11,7 +12,7 @@ function Onboarding() {
         step: 1,
         firstName: "",
         lastName: "",
-        gradyear: 0,
+        gradyear: new Number(),
         intendedMajor: "",
         extraAct: [],
         achievement: [],
@@ -30,6 +31,13 @@ function Onboarding() {
         setState({
             ...state,
             extraAct: data
+        })
+    }
+
+    const handleArrayChangeAch = data => {
+        setState({
+            ...state,
+            achievement: data
         })
     }
 
@@ -59,17 +67,18 @@ function Onboarding() {
         switch(state.step) {
             case 1:
                 return (
-                    <Name nextStep={nextStep} handleChange={handleChange}/>
+                    <Name state = {state} nextStep={nextStep} handleChange={handleChange}/>
                 )
             
             case 2:
                 return (
-                    <Intended prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
+                    <Intended state = {state} prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
                 )
 
             case 3: 
                 return (
                     <Activity 
+                        state ={state}
                         prevStep={prevStep} 
                         nextStep={nextStep} 
                         handleArrayChange = {handleArrayChange}
@@ -79,7 +88,20 @@ function Onboarding() {
 
             case 4:
                 return (
-                    <Achievement prevStep={prevStep} nextStep={nextStep} handleChange={handleChange}/>
+                    <Achievement 
+                        state = {state}
+                        prevStep={prevStep} 
+                        nextStep={nextStep} 
+                        handleArrayChange = {handleArrayChangeAch}
+                        achievement={state.achievement}
+                    />
+                )
+
+            case 5: 
+                return (
+                    <CurrentSchool 
+                        state = {state} nextStep={nextStep} handleChange={handleChange}
+                    />
                 )
         }
     }

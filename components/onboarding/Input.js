@@ -1,6 +1,6 @@
 import Layout from "../layout"
 
-function Input({placeholder,onChange,type, value, onBlur}) {
+function Input({placeholder,onChange,type, value, onBlur, styles}) {
     return (
         <Layout>
             <input 
@@ -10,6 +10,7 @@ function Input({placeholder,onChange,type, value, onBlur}) {
                 value ={value}
                 autoFocus
                 onBlur={onBlur}
+                style={styles}
             />
 
             <style jsx>

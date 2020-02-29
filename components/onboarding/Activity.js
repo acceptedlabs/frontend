@@ -4,7 +4,7 @@ import Button from "./Button"
 import Input from "./Input"
 import InputArrayButton from "./InputArrayButton"
 
-function Activity({prevStep, nextStep, handleArrayChange, activities}) {
+function Activity({state, prevStep, nextStep, handleArrayChange, activities}) {
 
     return (
         <Layout>
@@ -13,13 +13,13 @@ function Activity({prevStep, nextStep, handleArrayChange, activities}) {
                 <br/>
                 <form>
                     <div className="add-able-field">
-                        {activities.map(item => <input placeholder={item}/>)}
+                        {activities.map(item => <Input placeholder={item} styles={{marginTop: "0",marginBottom:"8px"}}/>)}
                         <InputArrayButton activities={activities} handleArrayChange={handleArrayChange}/>
                     </div>
-                    <div className="step-button-group">
+                    {(state.extraAct.length >=1)?<div className="step-button-group">
                         <Button prevStep={prevStep} buttonName="prevStep" />
                         <Button nextStep={nextStep} buttonName="nextStep" />
-                    </div>
+                    </div>: null}
                 </form>
             </div>
 
