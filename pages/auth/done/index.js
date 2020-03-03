@@ -16,7 +16,7 @@ class Done extends Component {
 		this.props.processToken(this.props.urlSuffix)
 	}
 	render() {
-		if (this.props.isAuth) this.props.router.push('/home')
+		if (this.props.isAuth) this.props.router.replace('/home')
 		return (
 			<Layout title="Authenticated">
 				<div className="hero is-fullheight">

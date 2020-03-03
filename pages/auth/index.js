@@ -12,7 +12,7 @@ class Login extends Component {
 	}
 	render() {
 		return (
-			<Layout title="Loading...">
+			<Layout title="Log In">
 				<div className="hero is-fullheight">
 					<div className="hero-body">
 						<div className="container has-text-centered">
