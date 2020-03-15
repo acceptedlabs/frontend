@@ -1,12 +1,11 @@
 import Layout from '../components/layout'
+import LogoBar from '../components/logo-bar'
 
 const Index = () => (
 	<Layout>
 		<div className="hero is-fullheight">
 			<div className="hero-head">
-				<section className="logo-box">
-					<img src="assets/accepted-logo-dark.svg" />
-				</section>
+				<LogoBar />
 			</div>
 			<div className="hero-body">
 				<section className="section">
@@ -23,17 +22,7 @@ const Index = () => (
 
 
 		<style jsx>{`
-			.logo-box {
-				width: 100%;
-				height: 4.8rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 1.3rem 1rem;
-			}
-			.logo-box > img {
-				height: 100%;
-			}
+			
 			.hero-body > .section {
 				margin: 0 auto;
 				max-width: 70%;
