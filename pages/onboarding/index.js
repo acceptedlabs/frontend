@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import classNames from 'classnames'
+
+import Layout from '../../components/layout'
 
 // step imports
 import NameStep from '../../components/onboarding-steps/name'
@@ -33,9 +35,9 @@ export default () => {
     }
 
     const steps = [
-        <NameStep onChange={setKey('name')} value={state.name} />,
-        <MentorMenteeStep onChange={setKey('mentorMentee')} />,
-        <FieldStudyStep onChange={setKey('fieldStudy')} />,
+        <NameStep onChange={setKey('name')} value={state.name}/>,
+        <MentorMenteeStep onChange={setKey('mentorMentee')}/>,
+        <FieldStudyStep onChange={setKey('fieldStudy')}/>,
         <IntendedMajorStep onChange={setKey('intendedMajor')}/>,
         <GradYearStep onChange={setKey('gradYear')}/>,
         <RaceStep onChange={setKey('race')}/>,
@@ -46,35 +48,39 @@ export default () => {
 
     const partLabels = [1, 1, 2, 2, 3, 3, 3, 3, 4]
 
-    return (<>
-        <div className="w-screen px-16 py-8 text-center">
-            <img src="/assets/accepted-logo-dark.svg" alt="accepted" className="mx-auto my-0 h-8 self-center"/>
-        </div>
-        <div
-            className="w-screen max-w-lg flex flex-col md:flex-row lg:flex-row xl:flex-row items-center justify-between mx-auto my-0 select-none">
-            <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 1}, {'text-gray-600': partLabels[state.curStep] !== 1})}>welcome</h3>
-            <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 2}, {'text-gray-600': partLabels[state.curStep] !== 2})}>academics</h3>
-            <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 3}, {'text-gray-600': partLabels[state.curStep] !== 3})}>demographics</h3>
-            <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 4}, {'text-gray-600': partLabels[state.curStep] !== 4})}>school types</h3>
-        </div>
-        <div className="mt-8 font-bold text-5xl text-center">
-            Let's get started.
-        </div>
-        {steps[state.curStep]}
-        <div className="fixed bottom-0 w-screen px-16 py-8 text-center flex flex-row items-center justify-center select-none">
-            <button
-                className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep <= 0})}
-                onClick={() => incStep(-1)}
-            >
-                &lsaquo; Back
-            </button>
-            &emsp;
-            <button
-                className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length - 1})}
-                onClick={() => incStep(1)}
-            >
-                Next &rsaquo;
-            </button>
-        </div>
-    </>)
+    return (
+        <Layout title="Get Started">
+            <div className="w-screen px-16 py-8 text-center">
+                <img src="/assets/accepted-logo-dark.svg" alt="accepted" className="mx-auto my-0 h-8 self-center"/>
+            </div>
+            <div
+                className="w-screen max-w-lg flex flex-col md:flex-row lg:flex-row xl:flex-row items-center justify-between mx-auto my-0 select-none">
+                <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 1}, {'text-gray-600': partLabels[state.curStep] !== 1})}>welcome</h3>
+                <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 2}, {'text-gray-600': partLabels[state.curStep] !== 2})}>academics</h3>
+                <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 3}, {'text-gray-600': partLabels[state.curStep] !== 3})}>demographics</h3>
+                <h3 className={classNames('text-xl', 'font-medium', {'text-gray-800': partLabels[state.curStep] === 4}, {'text-gray-600': partLabels[state.curStep] !== 4})}>school
+                    types</h3>
+            </div>
+            <div className="mt-8 font-bold text-5xl text-center">
+                Let's get started.
+            </div>
+            {steps[state.curStep]}
+            <div
+                className="fixed bottom-0 w-screen px-16 py-8 text-center flex flex-row items-center justify-center select-none">
+                <button
+                    className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep <= 0})}
+                    onClick={() => incStep(-1)}
+                >
+                    &lsaquo; Back
+                </button>
+                &emsp;
+                <button
+                    className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length - 1})}
+                    onClick={() => incStep(1)}
+                >
+                    Next &rsaquo;
+                </button>
+            </div>
+        </Layout>
+    )
 }

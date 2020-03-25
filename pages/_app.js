@@ -1,4 +1,3 @@
-// import '../styles/bulma.min.css'
 import '../styles/index.css'
 
 export default function MyApp({ Component, pageProps }) {
