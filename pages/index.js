@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default () => (
+const Index = () => (
 	<>
 		<div className="w-screen px-16 py-8 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 grid-flow-col">
 			<img src="/assets/accepted-logo-dark.svg" alt="accepted" className="h-8 col-span-1 self-center"/>
@@ -54,3 +54,5 @@ export default () => (
 		</div>
 	</>
 )
+
+export default Index
