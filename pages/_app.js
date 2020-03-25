@@ -7,8 +7,6 @@ import withReduxSaga from 'next-redux-saga'
 import { PersistGate } from 'redux-persist/integration/react'
 import * as actions from '../store/actions'
 
-import 'source-serif-pro/source-serif-pro.css'
-import '../styles/bulma.min.css'
 import '../styles/index.css'
 
 class AcceptedApp extends App {

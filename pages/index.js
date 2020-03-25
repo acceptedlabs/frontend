@@ -1,74 +1,56 @@
 import Link from 'next/link'
-import Layout from '../components/layout'
 
-const Index = () => (
-	<Layout>
-		<div className="hero is-fullheight">
-			<div className="hero-head">
-				<section className="logo-box">
-					<img src="assets/accepted-logo-dark.svg" />
-				</section>
+export default () => (
+	<>
+		<div className="w-screen px-16 py-8 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 grid-flow-col">
+			<img src="/assets/accepted-logo-dark.svg" alt="accepted" className="h-8 col-span-1 self-center"/>
+			<div className="col-span-1 sm:col-start-2 md:col-start-2 lg:col-start-4 text-right flex items-center justify-end">
+				<button className="bg-blue-900 text-white rounded-full font-medium px-4 py-2 hover:bg-blue-700">Log in</button>
 			</div>
-			<div className="hero-body">
-				<section className="section">
-					<h1 className="header-text">
-						Stressed about<br />college applications?<br />We can help.
-					</h1>
-					<p className="cta-description">Accepted pairs you up with real college students who can guide you through the entire process&mdash;from application to acceptance.</p>
-					<div className="signup-cta">
-						<Link href="/auth" replace><button className="button is-rounded is-black is-aubergine">Get started &mdash; it&apos;s free</button></Link>
+		</div>
+		<div className="w-screen px-16 mt-8 sm:mt-16 md:mt-20 lg:mt-32 text-center">
+			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">Stressed about college apps?</h1>
+			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">We can help.</h1>
+			<h3 className="text-lg md:text-xl lg:text-xl xl:text-xl font-normal text-gray-700 mt-4 max-w-xl mx-auto my-0">Accepted pairs you up with real college students who can guide you through the entire process — from application to acceptance.</h3>
+			<Link href="/onboarding/"><button className="mt-5 bg-blue-700 text-white rounded-full text-sm font-medium px-4 py-2 hover:bg-blue-800">Get started &mdash; it's free</button></Link>
+		</div>
+
+		<div className="w-screen px-16 mt-12 sm:mt-32 md:mt-40 lg:mt-40 xl:mt-40 py-8 text-center">
+			<h2 className="text-4xl font-bold text-gray-800 leading-tight mb-8">How It Works</h2>
+			<div className="max-w-5xl grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-6 mx-auto my-0">
+				<div className="col-span-1 shadow-lg rounded border border-solid transform transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="px-6 pt-6">
+						<h3 className="font-bold text-2xl mb-2 text-left">1. Fill out a short survey</h3>
 					</div>
-				</section>
+					<div className="px-6 pt-2 pb-6 text-left text-gray-700">
+						Tell us a bit about yourself. We ask for basic things like academic plans and types of schools you're interested in. We keep this information secret unless you choose to share it with a mentor.
+					</div>
+				</div>
+				<div className="col-span-1 shadow-lg rounded border border-solid transform transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="px-6 pt-6">
+						<h3 className="font-bold text-2xl mb-2 text-left">2. Get connected with mentors</h3>
+					</div>
+					<div className="px-6 pt-2 pb-6 text-left text-gray-700">
+						Based on your responses, we generate a list of mentors with similar backgrounds, each with their own specialty. Connect with one to get help from them, and then unconnect when done.
+					</div>
+				</div>
+				<div className="col-span-1 shadow-lg rounded border border-solid transform transition-transform duration-200 ease-in-out hover:scale-105">
+					<div className="px-6 pt-6">
+						<h3 className="font-bold text-2xl mb-2 text-left">3. Keep connecting!</h3>
+					</div>
+					<div className="px-6 pt-2 pb-6 text-left text-gray-700">
+						Keep connecting with mentors until you're done with the college application process!
+					</div>
+				</div>
 			</div>
 		</div>
 
-
-		<style jsx>{`
-			.logo-box {
-				width: 100%;
-				height: 4.8rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 1.3rem 1rem;
-			}
-			.logo-box > img {
-				height: 100%;
-			}
-			.hero-body > .section {
-				margin: 0 auto;
-				max-width: 70%;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.header-text {
-				font-family: 'Source Serif Pro';
-				font-weight: 900;
-				color: #2B3548;
-				font-size: 5rem;
-				text-align: center;
-				line-height: 5.5rem;
-			}
-			.cta-description {
-				font-family: 'Red Hat Display';
-				font-size: 1.5rem;
-				text-align: center;
-				margin-top: 20px;
-				max-width: 80%;
-			}
-			button.is-aubergine {
-				background: #3F3D56;
-				font-family: 'Red Hat Display';
-				font-weight: 500;
-				font-size: 1rem;
-				
-			}
-			.signup-cta {
-				margin-top: 20px;
-			}
-		`}</style>
-	</Layout>
+		<div className="mt-12 px-16 py-8 text-center">
+			<div className="py-2 px-2 max-w-sm text-left mx-auto my-0 rounded-full bg-gray-300 mb-4 flex justify-center flex-column items-center">
+				<span className="pill text-xs bg-blue-700 py-1 px-2 rounded-full text-white font-bold mr-2">NEW</span>
+				<span>Follow us on <a href="//instagram.com/acceptedapp" className="font-medium">Instagram</a> for updates!</span>
+			</div>
+			<p className="text-sm text-gray-800 font-medium">&copy; 2020 Accepted Labs. All rights reserved.</p>
+		</div>
+	</>
 )
-
-export default Index
