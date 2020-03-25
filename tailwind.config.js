@@ -6,7 +6,8 @@ module.exports = {
         }
     },
     variants: {
-        borderColor: ['focus']
+        borderColor: ['focus'],
+        backgroundColor: ['disabled']
     },
     plugins: [],
 }

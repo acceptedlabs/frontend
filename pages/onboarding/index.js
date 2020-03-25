@@ -44,6 +44,19 @@ export default () => {
         <GenderStep onChange={setKey('gender')}/>,
         <FinaidStep onChange={setKey('finaid')}/>,
         <SchoolTypesStep onChange={setKey('schoolTypes')}/>,
+        <SchoolTypesStep onChange={setKey('schoolTypes')}/>,
+    ]
+
+    const stepKeys = [
+        'name',
+        'mentorMentee',
+        'fieldStudy',
+        'intendedMajor',
+        'gradYear',
+        'race',
+        'gender',
+        'finaid',
+        'schoolTypes'
     ]
 
     const partLabels = [1, 1, 2, 2, 3, 3, 3, 3, 4]
@@ -75,8 +88,9 @@ export default () => {
                 </button>
                 &emsp;
                 <button
-                    className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length - 1})}
+                    className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length - 1}, 'disabled:bg-gray-400')}
                     onClick={() => incStep(1)}
+                    disabled={!state[stepKeys[state.curStep]]}
                 >
                     Next &rsaquo;
                 </button>

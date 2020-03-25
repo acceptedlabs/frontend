@@ -11,8 +11,11 @@ export default ({ onChange }) => {
     const toggleSelected = sel => {
         var curSelected = {...selected}
         curSelected[sel] = !curSelected[sel]
-        onChange(curSelected)
+        const selSet = new Set(Object.values(curSelected))
         _setSelected(curSelected)
+
+        if (selSet.size === 1 && selSet.has(false)) onChange(null)
+        else onChange(curSelected)
     }
     return (
         <div className="mt-10 text-center">
