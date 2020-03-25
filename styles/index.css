@@ -1,5 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&family=Source+Serif+Pro:wght@400;600;700&display=swap');
+/* purgecss start ignore */
+@tailwind base;
 
 body, html {
-	background: #EFEBE3;
+	@apply font-sans;
 }
+
+@tailwind components;
+
+/* onboarding card */
+.onboarding-card {
+	@apply mb-4 rounded-lg shadow-sm transition transition-shadow duration-300 border mx-auto mt-0 max-w-md py-3 px-4 text-left cursor-pointer select-none;
+}
+
+.onboarding-card:hover {
+	@apply text-gray-900 shadow-lg;
+}
+
+.onboarding-card.selected {
+	@apply bg-blue-700 text-white;
+}
+
+.onboarding-card.selected:hover {
+	@apply text-white;
+}
+
+/* purgecss end ignore */
+
+@tailwind utilities;
