@@ -1,10 +1,14 @@
-Accepted is a "source available" project. It is NOT fully open source at this time.
+# Accepted Source Code Notice
+Accepted is a "source available" project. It is NOT fully open source at this time. However, it makes use of several open-source components which are licensed separately.
+
+**Accepted source code &copy; 2020 Aditya Rathod, Chinh Le, and contributors.**
 
 
 ## Bulma
-`/styles/bulma.min.css` is licensed under the terms of the MIT License.
+`/styles/bulma.min.css` is licensed under the terms of the MIT License:
 
-```The MIT License (MIT)
+```
+The MIT License (MIT)
 
 Copyright (c) 2019 Jeremy Thomas
 
@@ -24,6 +28,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.```
+THE SOFTWARE.
+```
 
 
