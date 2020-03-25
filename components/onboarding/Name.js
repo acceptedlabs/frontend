@@ -7,8 +7,10 @@ function Name({ state, nextStep, handleChange }) {
 	return (
 		<Layout>
 			<div className="form-container">
-				<h1>First things first <br /> Your name ?</h1>
+				<h1>Welcome!</h1>
+				<h2 className="subtitle">Let&apos;s get to know you.</h2>
 				<br />
+				<h3 className="subtitle is-5">Hi</h3>
 				<form>
 					<Input
 						placeholder="What is your first name"
@@ -51,6 +53,9 @@ function Name({ state, nextStep, handleChange }) {
 					form .step-button-group {
 						display: flex;
 						justify-content: flex-end;
+					}
+					h2 {
+						font-family: 'Red Hat Display';
 					}
 				`}
 			</style>
