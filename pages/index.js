@@ -1,13 +1,9 @@
 import Link from 'next/link'
+import Navbar from '../components/navbar'
 
 const Index = () => (
 	<>
-		<div className="w-screen px-16 py-8 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 grid-flow-col">
-			<img src="/assets/accepted-logo-dark.svg" alt="accepted" className="h-8 col-span-1 self-center"/>
-			<div className="col-span-1 sm:col-start-2 md:col-start-2 lg:col-start-4 text-right flex items-center justify-end">
-				<Link href="/auth"><button className="bg-blue-900 text-white rounded-full font-medium px-4 py-2 hover:bg-blue-700 select-none">Log in</button></Link>
-			</div>
-		</div>
+		<Navbar />
 		<div className="w-screen px-16 mt-8 sm:mt-16 md:mt-20 lg:mt-32 text-center">
 			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">Stressed about college apps?</h1>
 			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">We can help.</h1>

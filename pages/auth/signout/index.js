@@ -1,13 +1,11 @@
 import { Component } from 'react'
-import PropTypes from 'prop-types'
+import { signOut } from '../../../auth-client'
 
-import { signIn } from '../../auth-client'
+import Layout from '../../../components/layout'
 
-import Layout from '../../components/layout'
-
-class Login extends Component {
+class SignOut extends Component {
 	componentDidMount() {
-		signIn()
+		signOut()
 	}
 	render() {
 		return (
@@ -20,8 +18,4 @@ class Login extends Component {
 	}
 }
 
-Login.propTypes = {
-	login: PropTypes.func.isRequired,
-}
-
-export default Login
+export default SignOut

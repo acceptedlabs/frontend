@@ -12,11 +12,11 @@ class Done extends Component {
 		this.props.authHandleCallback()
 	}
 	render() {
-		if (this.props.isAuth) this.props.router.replace('/home')
+		if (this.props.isAuth) this.props.router.replace('/forum')
 		return (
 			<Layout title="Authenticated">
 				<div className="w-screen h-screen flex items-center justify-center">
-					<h3 className="font-lg font-medium">Loading...</h3>
+					<img src="/assets/accepted-logo-dark.svg" alt="accepted" className="h-6"/>
 				</div>
 			</Layout>
 		)
