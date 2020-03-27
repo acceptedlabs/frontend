@@ -9,10 +9,12 @@ import * as actions from '../store/actions'
 
 import '../styles/index.css'
 
+
 class AcceptedApp extends App {
 	componentDidMount() {
 		// initialize auth on app load
-		this.props.store.dispatch(actions.initializeAuth())
+		// signIn()
+		// this.props.store.dispatch(actions.initializeAuth())
 	}
 	render() {
 		const { Component, pageProps, store } = this.props

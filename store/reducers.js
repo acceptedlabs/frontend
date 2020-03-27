@@ -4,12 +4,9 @@ import { combineReducers } from 'redux'
 
 const initialState = {
 	auth: {
-		loading: false,
-		error: null,
 		isAuth: false,
-		token: null,
 		user: null,
-		client: null,
+		profile: null,
 	},
 }
 
@@ -23,42 +20,17 @@ function createReducer(initialState, handlers) {
 	}
 }
 
-function initializeAuth(authState, action) {
+function authInfoLoaded(authState, action) {
 	return {
 		...authState,
-		loading: true,
-	}
-}
-
-function authInitialized(authState, action) { 
-	return {
-		...authState,
-		client: action.client,
-		loading: false,
-	}
-}
-
-function authInitializationError(authState, action) {
-	return {
-		...authState,
-		loading: false,
-		error: action.error,
-	}
-}
-
-function authFlowCompleted(authState, action) {
-	return {
-		...authState,
-		loading: false,
 		isAuth: true,
+		profile: action.user.profile,
+		user: action.user,
 	}
 }
 
 const authReducer = createReducer(initialState.auth, {
-	'INITIALIZE_AUTH': initializeAuth,
-	'AUTH_INITIALIZED': authInitialized,
-	'AUTH_INITIALIZATION_ERROR': authInitializationError,
-	'AUTH_FLOW_COMPLETED': authFlowCompleted,
+	'AUTH_INFO_LOADED': authInfoLoaded,
 })
 
 const acceptedApp = combineReducers({
