@@ -18,12 +18,14 @@ export function handleAuthentication() {
 				return reject(err)
 			}
 			const idToken = authResult.idToken
+			const accessToken = authResult.accessToken
 			const profile = authResult.idTokenPayload
 			// set the time that the id token will expire at
 			const expiresAt = authResult.idTokenPayload.exp * 1000
 			resolve({
 				authenticated: true,
 				idToken,
+				accessToken,
 				profile,
 				expiresAt,
 			})
@@ -32,7 +34,10 @@ export function handleAuthentication() {
 }
 
 export function signIn() {
-	auth0Client.authorize()
+	auth0Client.authorize({
+		audience: 'https://api.accepted.tech/',
+		responseType: 'token id_token',
+	})
 }
 
 export function signOut() {

@@ -5,6 +5,7 @@ import { combineReducers } from 'redux'
 const initialState = {
 	auth: {
 		isAuth: false,
+		isOnboarded: null,
 		user: null,
 		profile: null,
 	},
@@ -29,8 +30,16 @@ function authInfoLoaded(authState, action) {
 	}
 }
 
+function onboardingInfoLoaded(authState, action) {
+	return {
+		...authState,
+		isOnboarded: action.isOnboarded,
+	}
+}
+
 const authReducer = createReducer(initialState.auth, {
 	'AUTH_INFO_LOADED': authInfoLoaded,
+	'AUTH_SET_OB_STATUS': onboardingInfoLoaded,
 })
 
 const acceptedApp = combineReducers({

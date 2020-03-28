@@ -19,7 +19,7 @@ const Index = () => (
 						<h3 className="font-bold text-2xl mb-2 text-left">1. Fill out a short survey</h3>
 					</div>
 					<div className="px-6 pt-2 pb-6 text-left text-gray-700">
-						Tell us a bit about yourself. We ask for basic things like academic plans and types of schools you're interested in. We keep this information secret unless you choose to share it with a mentor.
+						Tell us a bit about yourself. We ask for basic things like academic plans and types of schools you&apos;re interested in. We keep this information secret unless you choose to share it with a mentor.
 					</div>
 				</div>
 				<div className="col-span-1 shadow-lg rounded border border-solid transform transition-transform duration-200 ease-in-out hover:scale-105">
@@ -35,7 +35,7 @@ const Index = () => (
 						<h3 className="font-bold text-2xl mb-2 text-left">3. Keep connecting!</h3>
 					</div>
 					<div className="px-6 pt-2 pb-6 text-left text-gray-700">
-						Keep connecting with mentors until you're done with the college application process!
+						Keep connecting with mentors until you&apos;re done with the college application process!
 					</div>
 				</div>
 			</div>

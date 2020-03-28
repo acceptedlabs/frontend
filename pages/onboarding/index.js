@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
-import {useState} from 'react'
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import Layout from '../../components/layout'
@@ -15,7 +16,22 @@ import GenderStep from '../../components/onboarding-steps/gender'
 import FinaidStep from '../../components/onboarding-steps/finaid'
 import SchoolTypesStep from '../../components/onboarding-steps/school-types'
 
-export default () => {
+import { connect } from 'react-redux'
+import { submitOnboardingData } from '../../store/actions'
+import {withRouter} from 'next/router'
+
+const Onboarding = ({ router, isAuth, isOnboarded, submitOnboardingData }) => {
+
+	if (!isAuth) {
+		router.replace('/auth')
+		return null
+	}
+
+	if (isOnboarded) {
+		router.replace('/forum')
+		return null
+	}
+
 	const [state, setState] = useState({
 		curStep: 0,
 		name: '',
@@ -45,7 +61,6 @@ export default () => {
 		<GenderStep onChange={setKey('gender')}/>,
 		<FinaidStep onChange={setKey('finaid')}/>,
 		<SchoolTypesStep onChange={setKey('schoolTypes')}/>,
-		<SchoolTypesStep onChange={setKey('schoolTypes')}/>,
 	]
 
 	const stepKeys = [
@@ -61,6 +76,8 @@ export default () => {
 	]
 
 	const partLabels = [1, 1, 2, 2, 3, 3, 3, 3, 4]
+
+	const submitData = () => submitOnboardingData(state)
 
 	return (
 		<Layout title="Get Started">
@@ -89,13 +106,35 @@ export default () => {
 				</button>
                 &emsp;
 				<button
-					className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length - 1}, 'disabled:bg-gray-400')}
+					className={classNames('rounded-full', 'bg-blue-700', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep >= steps.length}, 'disabled:bg-gray-400')}
 					onClick={() => incStep(1)}
 					disabled={!state[stepKeys[state.curStep]]}
 				>
                     Next &rsaquo;
 				</button>
+				<button
+					className={classNames('rounded-full', 'bg-blue-800', 'hover:bg-blue-900', 'px-4', 'py-2', 'text-white', {'hidden': state.curStep !== steps.length}, 'disabled:bg-gray-400')}
+					onClick={submitData}
+				>
+					Submit
+				</button>
 			</div>
 		</Layout>
 	)
 }
+
+Onboarding.propTypes = {
+	submitOnboardingData: PropTypes.func.isRequired,
+	isAuth: PropTypes.bool.isRequired,
+	isOnboarded: PropTypes.bool.isRequired,
+	router: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => {
+	return {
+		isAuth: state.auth.isAuth,
+		isOnboarded: state.auth.isOnboarded,
+	}
+}
+
+export default connect(mapStateToProps, { submitOnboardingData })(withRouter(Onboarding))

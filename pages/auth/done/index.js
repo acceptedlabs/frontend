@@ -12,7 +12,13 @@ class Done extends Component {
 		this.props.authHandleCallback()
 	}
 	render() {
-		if (this.props.isAuth) this.props.router.replace('/forum')
+		if (this.props.isAuth && this.props.isOnboarded != null) {
+			if (this.props.isOnboarded) {
+				this.props.router.replace('/forum')
+			} else {
+				this.props.router.replace('/onboarding')
+			}
+		}
 		return (
 			<Layout title="Authenticated">
 				<div className="w-screen h-screen flex items-center justify-center">
@@ -26,7 +32,8 @@ class Done extends Component {
 Done.propTypes = {
 	authHandleCallback: PropTypes.func.isRequired,
 	isAuth: PropTypes.bool.isRequired,
+	isOnboarded: PropTypes.bool,
 	router: PropTypes.object.isRequired,
 }
 
-export default connect(state => { return { isAuth: state.auth.isAuth } }, {authHandleCallback})(withRouter(Done))
+export default connect(state => { return { isAuth: state.auth.isAuth, isOnboarded: state.auth.isOnboarded } }, {authHandleCallback})(withRouter(Done))
