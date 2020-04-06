@@ -9,6 +9,9 @@ const initialState = {
 		user: null,
 		profile: null,
 	},
+	post: {
+		isSubmitted: false,
+	},
 }
 
 function createReducer(initialState, handlers) {
@@ -42,8 +45,20 @@ const authReducer = createReducer(initialState.auth, {
 	'AUTH_SET_OB_STATUS': onboardingInfoLoaded,
 })
 
+function postSetSubmitted(postState, action) {
+	return {
+		...postState,
+		isSubmitted: action.submitted,
+	}
+}
+
+const postReducer = createReducer(initialState.post, {
+	'POST_SUB_STATUS': postSetSubmitted,
+})
+
 const acceptedApp = combineReducers({
 	auth: authReducer,
+	post: postReducer,
 })
 
 export default acceptedApp

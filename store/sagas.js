@@ -38,9 +38,28 @@ export function* watchSubmitOBData() {
 	yield takeLatest('AUTH_SUBMIT_OB_DATA', submitOnboardingData)
 }
 
+export function* newPost(action) {
+	const token = yield select(tokenSelector)
+	const isOnboarded = yield select(onboardedSelector)
+	if (isOnboarded && token) {
+		const res = yield call(api.createPost, token, action.title, action.text)
+		if (res.status === 201) {
+			yield put(actions.setSubmissionStatus(true))
+		} else {
+			yield put(actions.setSubmissionStatus(false))
+			console.log('something went wrong')
+		}
+	}
+}
+
+export function* watchNewPost() {
+	yield takeLatest('POST_SUBMIT', newPost)
+}
+
 export default function* rootSaga() {
 	yield all([
 		watchParseInfo(),
 		watchSubmitOBData(),
+		watchNewPost(),
 	])
 }

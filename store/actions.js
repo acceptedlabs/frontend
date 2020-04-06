@@ -52,3 +52,30 @@ export function submitOnboardingData(data) {
 		data,
 	}
 }
+
+/**
+ * Action creator to trigger saga that submits post data to the server.
+ * @param title The title of the post.
+ * @param text The text of the post in Markdown.
+ * @returns {{text: *, type: string, title: *}} The created action.
+ */
+export function createPost(title, text) {
+	return {
+		type: 'POST_SUBMIT',
+		title,
+		text,
+	}
+}
+
+/**
+ * Action creator to pass post submission status to store.
+ *
+ * @param submitted Whether or not the post was successfully submitted.
+ * @returns {{submitted: *, type: string}} The created action.
+ */
+export function setSubmissionStatus(submitted) {
+	return {
+		type: 'POST_SUB_STATUS',
+		submitted,
+	}
+}

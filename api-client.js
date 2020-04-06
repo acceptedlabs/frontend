@@ -23,10 +23,25 @@ export async function isOnboarded(token) {
  * Submits onboarding data to the server.
  * @param token The access token for the Accepted API.
  * @param onboardingData Data to be submitted to the server.
- * @returns {Promise<void>} The API response.
+ * @returns {Promise<AxiosResponse<T>>} The API response.
  */
 export async function submitOnboardingData(token, onboardingData) {
 	return client.post('/user/onboard', onboardingData, {
+		headers: {
+			'Authorization': `Bearer ${token}`,
+		},
+	})
+}
+
+/**
+ * Creates a new post on the server.
+ * @param token The access token for the Accepted API.
+ * @param title The title of the post.
+ * @param text The post body (in Markdown).
+ * @returns {Promise<AxiosResponse<T>>} The API response.
+ */
+export async function createPost(token, title, text) {
+	return client.post('/forum', {title, text}, {
 		headers: {
 			'Authorization': `Bearer ${token}`,
 		},
