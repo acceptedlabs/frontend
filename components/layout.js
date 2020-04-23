@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-
 import Head from 'next/head'
 
 const Layout = props => (

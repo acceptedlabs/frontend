@@ -1,22 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
 
 import Layout from '../../components/layout'
 import Navbar from '../../components/navbar'
 import Link from 'next/link'
 
-import { withRouter } from 'next/router'
+import { withForceAuth } from '../../components/force-auth'
 
-import { connect } from 'react-redux'
-import {createPost, setSubmissionStatus } from '../../store/actions'
+import { useMutation } from '@apollo/react-hooks'
+import { FORUM_POST } from '../../client/mutations'
 
-const ComposePost = ({ isAuth, isSubmitted, createPost, setSubmissionStatus, router }) => {
-
-	useEffect(() => {
-		setSubmissionStatus(false)
-	}, [])
-
+const ComposePost = () => {
+	const router = useRouter()
 	const [title, setTitle] = useState('')
 	const [body, setBody] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -24,18 +20,13 @@ const ComposePost = ({ isAuth, isSubmitted, createPost, setSubmissionStatus, rou
 		message: '',
 		type: '',
 	})
-
-	if (!isAuth) router.replace('/auth')
-	
-	useEffect(() => {
-		if (!isSubmitted) return
-		setMsg({
-			message: 'Your post was created!',
-			type: 'SUCCESS',
-		})
-		setLoading(false)
-		setTimeout(() => router.push('/forum'), 1000)
-	}, [isSubmitted])
+	const [createPost] = useMutation(FORUM_POST, {
+		variables: {
+			title,
+			body,
+			tag: 'test',
+		},
+	})
 
 	const submitPost = () => {
 		const postTitle = title.trim(), postBody = body.trim()
@@ -46,10 +37,21 @@ const ComposePost = ({ isAuth, isSubmitted, createPost, setSubmissionStatus, rou
 			})
 			return
 		}
-		createPost(title, body)
-		setTitle('')
-		setBody('')
 		setLoading(true)
+		createPost()
+			.then(({ data, error }) => {
+				if (error || !data || !data.forumPost) {
+					setMsg({
+						message: 'Error creating your post.',
+						type: 'ERROR',
+					})
+					setLoading(false)
+					return
+				}
+				setTitle('')
+				setBody('')
+				router.push(`/forum/p/${data.forumPost.id}`)
+			})
 	}
 
 	return (
@@ -57,14 +59,14 @@ const ComposePost = ({ isAuth, isSubmitted, createPost, setSubmissionStatus, rou
 			<Navbar />
 			<div className="max-w-3xl px-8 my-0 mx-auto">
 				<h1 className="text-5xl font-bold text-gray-800">
-				Create Post
+					Create Post
 				</h1>
 				<h3 className="my-2 text-md font-medium text-gray-700">
-				Post something to the Accepted community forum.
+					Post something to the Accepted community forum.
 				</h3>
 				{msg.message ?
 					<div className="status mt-10 mb-4">
-						<div className={classNames('w-full', {'bg-green-500': msg.type === 'SUCCESS'}, {'bg-red-500': msg.type === 'ERROR'}, 'p-4', 'text-white', 'text-medium', 'rounded')}>
+						<div className={classNames('w-full', { 'bg-green-500': msg.type === 'SUCCESS' }, { 'bg-red-500': msg.type === 'ERROR' }, 'p-4', 'text-white', 'text-medium', 'rounded')}>
 							{msg.message}
 						</div>
 					</div>
@@ -106,19 +108,4 @@ const ComposePost = ({ isAuth, isSubmitted, createPost, setSubmissionStatus, rou
 	)
 }
 
-ComposePost.propTypes = {
-	isAuth: PropTypes.bool.isRequired,
-	isSubmitted: PropTypes.bool,
-	createPost: PropTypes.func.isRequired,
-	setSubmissionStatus: PropTypes.func.isRequired,
-	router: PropTypes.object.isRequired,
-}
-
-const mapStateToProps = state => {
-	return {
-		isAuth: state.auth.isAuth,
-		isSubmitted: state.post.isSubmitted,
-	}
-}
-
-export default connect(mapStateToProps, { createPost, setSubmissionStatus })(withRouter(ComposePost))
+export default withForceAuth(ComposePost, true, '/forum')

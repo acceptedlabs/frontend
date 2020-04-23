@@ -2,18 +2,22 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Layout from '../../components/layout'
 
-import { connect } from 'react-redux'
-import { signIn } from '../../auth-client'
-
 import Navbar from '../../components/navbar'
 import TagCard from '../../components/forum/tag-card'
 import PostCard from '../../components/forum/post-card'
 
-const Forum = ({ isAuth }) => {
-	if (!isAuth) {
-		signIn()
-		return null
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+const IS_ONBOARDED = gql`
+	{
+		isOnboarded
 	}
+`
+
+const Forum = () => {
+	const { data, error } = useQuery(IS_ONBOARDED)
+
 	return (
 		<Layout title="Forum - Home">
 			<Navbar />
@@ -21,7 +25,10 @@ const Forum = ({ isAuth }) => {
 				<div className="text-5xl font-bold text-gray-800">
 					Forum
 				</div>
-				<Link href="/forum/post"><button className="my-2 px-4 py-2 bg-blue-600 rounded-full text-white font-medium text-md hover:bg-blue-900 active:outline-none" tabIndex="1">&#65291; Create Post</button></Link>
+				{!error && data && data.isOnboarded ?
+					<Link href="/forum/post"><button className="my-2 px-4 py-2 bg-blue-600 rounded-full text-white font-medium text-md hover:bg-blue-900 active:outline-none" tabIndex="1">&#65291; Create Post</button></Link> :
+					null
+				}
 				<div className="mt-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
 					<TagCard
 						tag="finaid"
@@ -78,4 +85,4 @@ const Forum = ({ isAuth }) => {
 Forum.propTypes = {
 	isAuth: PropTypes.bool,
 }
-export default connect(state => ({isAuth: state.auth.isAuth}), null)(Forum)
+export default Forum

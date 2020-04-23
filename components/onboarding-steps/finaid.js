@@ -14,13 +14,13 @@ const Finaid = ({ onChange }) => {
 				Do you intend to apply for financial aid?
 			</h4>
 			<div className="mt-10 mb-32">
-				<div className={classNames('onboarding-card', { 'selected': selected === 'yes' })}
-					onClick={() => setSelected('yes')}>
+				<div className={classNames('onboarding-card', { 'selected': selected === true })}
+					onClick={() => setSelected(true)}>
 					<h5 className="font-medium text-xl">Yes</h5>
 					<p>I intend to file the FAFSA and apply for need-based financial aid.</p>
 				</div>
-				<div className={classNames('onboarding-card', { 'selected': selected === 'no' })}
-					onClick={() => setSelected('no')}>
+				<div className={classNames('onboarding-card', { 'selected': selected === false })}
+					onClick={() => setSelected(false)}>
 					<h5 className="font-medium text-xl">No</h5>
 					<p>I do not intend to file the FAFSA and/or apply for need-based financial aid.</p>
 				</div>

@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import Navbar from '../components/navbar'
+import Layout from '../components/layout'
 
 const Index = () => (
-	<>
+	<Layout>
 		<Navbar />
 		<div className="w-screen px-16 mt-8 sm:mt-16 md:mt-20 lg:mt-32 text-center">
 			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">Stressed about college apps?</h1>
 			<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-serif font-black text-gray-800 leading-tight">We can help.</h1>
 			<h3 className="text-lg md:text-xl lg:text-xl xl:text-xl font-normal text-gray-700 mt-4 max-w-xl mx-auto my-0">Accepted pairs you up with real college students who can guide you through the entire process — from application to acceptance.</h3>
-			<Link href="/onboarding/"><button className="mt-5 bg-blue-700 text-white rounded-full text-sm font-medium px-4 py-2 hover:bg-blue-800">Get started &mdash; it's free</button></Link>
+			<Link href="/onboarding/"><button className="mt-5 bg-blue-700 text-white rounded-full text-sm font-medium px-4 py-2 hover:bg-blue-800">Get started &mdash; it&apos;s free</button></Link>
 		</div>
 
 		<div className="w-screen px-16 mt-12 sm:mt-32 md:mt-40 lg:mt-40 xl:mt-40 py-8 text-center">
@@ -48,7 +49,7 @@ const Index = () => (
 			</div>
 			<p className="text-sm text-gray-800 font-medium">&copy; 2020 Accepted Labs. All rights reserved.</p>
 		</div>
-	</>
+	</Layout>
 )
 
 export default Index

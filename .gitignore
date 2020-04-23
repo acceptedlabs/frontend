@@ -72,3 +72,4 @@ typings/
 .vscode
 *.swp
 *.swo
+.now

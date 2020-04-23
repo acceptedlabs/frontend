@@ -34,11 +34,12 @@ const TagCard = ({ tag, title, description, className, tabIndex }) => (
 	</Link>
 )
 
-TagCard.classNames = {
+TagCard.propTypes = {
 	tag: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,
 	className: PropTypes.any,
+	tabIndex: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
 }
 
 export default TagCard

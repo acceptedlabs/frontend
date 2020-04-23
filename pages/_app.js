@@ -1,31 +1,42 @@
 import App from 'next/app'
+import Router from 'next/router'
 
-import { Provider } from 'react-redux'
-import makeStore from '../store'
-import withRedux from 'next-redux-wrapper'
-import withReduxSaga from 'next-redux-saga'
-import { PersistGate } from 'redux-persist/integration/react'
-import * as actions from '../store/actions'
+import { GraphQLProvider } from '../client/provider'
+import { Auth0Provider } from '../auth0-client'
 
 import '../styles/index.css'
 
+const onRedirectCallback = appState => {
+	Router.push(
+		appState && appState.targetUrl
+			? appState.targetUrl
+			: '/',
+	)
+}
+
+const config = {
+	domain: 'accepted.auth0.com',
+	clientID: 'HPNf4xBJSrg5jkbdj3PHPdu1BCdCmUWC',
+	redirectUri: 'http://localhost:3000/',
+}
 
 class AcceptedApp extends App {
-	componentDidMount() {
-		// initialize auth on app load
-		// signIn()
-		// this.props.store.dispatch(actions.initializeAuth())
-	}
 	render() {
-		const { Component, pageProps, store } = this.props
+		const { Component, pageProps } = this.props
+		
 		return (
-			<Provider store={store}>
-				<PersistGate persistor={store.__PERSISTOR}>
+			<Auth0Provider
+				domain={config.domain}
+				client_id={config.clientID}
+				redirect_uri={config.redirectUri}
+				onRedirectCallback={onRedirectCallback}
+			>
+				<GraphQLProvider>
 					<Component {...pageProps} />
-				</PersistGate>
-			</Provider>
+				</GraphQLProvider>
+			</Auth0Provider>
 		)
 	}
 }
 
-export default withRedux(makeStore)(withReduxSaga(AcceptedApp))
+export default AcceptedApp
