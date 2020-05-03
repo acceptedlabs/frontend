@@ -10,20 +10,20 @@ const onRedirectCallback = appState => {
 	Router.push(
 		appState && appState.targetUrl
 			? appState.targetUrl
-			: '/',
+			: '/forum',
 	)
 }
 
 const config = {
 	domain: 'accepted.auth0.com',
 	clientID: 'HPNf4xBJSrg5jkbdj3PHPdu1BCdCmUWC',
-	redirectUri: 'http://localhost:3000/',
+	redirectUri: process.env.APP_URL,
 }
 
 class AcceptedApp extends App {
 	render() {
 		const { Component, pageProps } = this.props
-		
+
 		return (
 			<Auth0Provider
 				domain={config.domain}
@@ -31,6 +31,7 @@ class AcceptedApp extends App {
 				redirect_uri={config.redirectUri}
 				onRedirectCallback={onRedirectCallback}
 			>
+				<script src="//unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 				<GraphQLProvider>
 					<Component {...pageProps} />
 				</GraphQLProvider>

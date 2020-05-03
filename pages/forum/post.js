@@ -24,7 +24,7 @@ const ComposePost = () => {
 		variables: {
 			title,
 			body,
-			tag: 'test',
+			tag: 'apps',
 		},
 	})
 

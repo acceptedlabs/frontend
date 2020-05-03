@@ -9,7 +9,7 @@ import Loading from './loading'
 
 const OnboardingRedirector = ({ block, children }) => {
 	const router = useRouter()
-	const { isAuthenticated, loading: loadingAuth } = useAuth0()
+	const { isAuthenticated, loading: loadingAuth, loginWithRedirect } = useAuth0()
 	const { data, error, loading } = useQuery(IS_ONBOARDED)
 
 	console.log(`isAuth: ${isAuthenticated}, loadingAuth: ${loadingAuth}`)
@@ -17,10 +17,13 @@ const OnboardingRedirector = ({ block, children }) => {
 
 	if (loading || loadingAuth) return <Loading />
 	if (!isAuthenticated || error) {
-		router.replace('/')
+		loginWithRedirect({ appState: { targetUrl: '/onboarding' } })
 		if (block) return <Loading />
 	}
-	if (data && data.isOnboarded) {
+	if (data && isAuthenticated && !data.isOnboarded && router.pathname !== '/onboarding') {
+		router.replace('/onboarding')
+	}
+	if (data && data.isOnboarded && router.pathname !== '/forum') {
 		router.replace('/forum')
 		if (block) return <Loading />
 	}

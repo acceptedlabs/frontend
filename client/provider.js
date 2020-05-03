@@ -49,6 +49,7 @@ const typeDefs = gql`
 
 `
 const cache = new InMemoryCache()
+const noAuthQueries = new Set(['hotPostsFrontPage'])
 
 export const GraphQLProvider = ({ children }) => {
 	const { loading, isAuthenticated, getTokenSilently, getTokenWithPopup } = useAuth0()
@@ -65,10 +66,11 @@ export const GraphQLProvider = ({ children }) => {
 	}
 
 
-	const authLink = setContext(async (_, { headers }) => {
+	const authLink = setContext(async (req, { headers }) => {
 		const settings = {
 			audience: 'https://api.accepted.tech/',
 		}
+		if (noAuthQueries.has(req.operationName)) return headers
 		let token
 		try {
 			token = isAuthenticated ?
